@@ -2,6 +2,7 @@ package com.luisbandeira.dslearn.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -28,6 +30,9 @@ public class Offer implements Serializable {
     @JoinColumn(name = "course_id")
     private Course course;
 
+    @OneToMany(mappedBy = "offer")
+    private List<Resource> resources;
+
     public Offer() {
     }
 
@@ -40,7 +45,50 @@ public class Offer implements Serializable {
         this.course = course;
     }
     
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getEdition() {
+        return edition;
+    }
+
+    public void setEdition(String edition) {
+        this.edition = edition;
+    }
+
+    public Instant getStartMoment() {
+        return startMoment;
+    }
+
+    public void setStartMoment(Instant startMoment) {
+        this.startMoment = startMoment;
+    }
+
+    public Instant getEndMoment() {
+        return endMoment;
+    }
+
+    public void setEndMoment(Instant endMoment) {
+        this.endMoment = endMoment;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public List<Resource> getResources() {
+        return resources;
+    }
+    
     @Override
     public int hashCode() {
         final int prime = 31;
